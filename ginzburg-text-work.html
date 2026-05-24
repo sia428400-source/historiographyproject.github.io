@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Работа с текстом | Карло Гинзбург | Практикум по историографии</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FFFFFF;
+            color: #1A1A1A;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+        .site-header {
+            background-color: #000000;
+            color: #FFFFFF;
+            padding: 32px 0 28px;
+            border-bottom: 4px solid #D32F2F;
+        }
+        .back-links {
+            margin-bottom: 20px;
+        }
+        .back-link {
+            color: #D32F2F;
+            text-decoration: none;
+            font-weight: 500;
+            margin-right: 20px;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #D32F2F;
+            margin-bottom: 8px;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 32px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #E0E0E0;
+        }
+        
+        /* ДВЕ КОЛОНКИ ДЛЯ ЗАДАНИЙ */
+        .two-columns {
+            display: flex;
+            gap: 48px;
+            margin: 40px 0;
+        }
+        
+        /* ЛЕВАЯ КОЛОНКА — информация о книге */
+        .book-info {
+            flex: 1;
+            position: sticky;
+            top: 20px;
+            align-self: flex-start;
+        }
+        .info-card {
+            background-color: #FAFAFA;
+            border-left: 4px solid #D32F2F;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 32px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .info-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #D32F2F;
+            margin-bottom: 16px;
+        }
+        .info-card p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #2C2C2C;
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+        .info-card .meta {
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #E0E0E0;
+        }
+        
+        /* ПРАВАЯ КОЛОНКА — фрагмент и задания */
+        .tasks-area {
+            flex: 1.8;
+        }
+        .task-block {
+            background-color: #FFFFFF;
+            border: 1px solid #E0E0E0;
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 48px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+        .task-block h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #D32F2F;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #E0E0E0;
+        }
+        .fragment {
+            background-color: #F5F5F5;
+            border-left: 4px solid #000000;
+            padding: 20px 24px;
+            margin: 20px 0;
+            font-style: normal;
+            border-radius: 12px;
+        }
+        .fragment p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #1A1A1A;
+            margin-bottom: 8px;
+        }
+        .fragment-note {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 12px;
+            font-style: italic;
+        }
+        .question {
+            margin-top: 24px;
+            padding-top: 16px;
+            border-top: 1px dashed #E0E0E0;
+        }
+        .question p {
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #000000;
+        }
+        .question ol {
+            margin-left: 24px;
+            margin-bottom: 16px;
+        }
+        .question li {
+            margin-bottom: 16px;
+            line-height: 1.6;
+            color: #2C2C2C;
+        }
+        .answer-field {
+            background-color: #FAFAFA;
+            border: 1px solid #E0E0E0;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 16px;
+        }
+        .answer-field p {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #E0E0E0;
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            resize: vertical;
+            background-color: #FFFFFF;
+        }
+        textarea:focus {
+            outline: none;
+            border-color: #D32F2F;
+        }
+        
+        .site-footer {
+            background-color: #F5F5F5;
+            border-top: 1px solid #E0E0E0;
+            padding: 24px 0;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #5C5C5C;
+            margin-top: 40px;
+        }
+        
+       @media (max-width: 900px) {
+            .two-columns {
+                flex-direction: column;
+            }
+            .book-info {
+                position: static;
+            }
+            .container {
+                padding: 0 20px;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            .task-block {
+                padding: 20px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="back-links">
+                <a href="index.html" class="back-link">← Назад к направлениям</a>
+                <a href="micro-authors.html" class="back-link">← Авторы микроистории</a>
+                <a href="carlo-ginzburg.html" class="back-link">← Карло Гинзбург</a>
+            </div>
+            <h1>Работа с текстом</h1>
+            <div class="subtitle">Аналитические задания по ключевым работам Карло Гинзбурга</div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="two-columns">
+                <!-- ЛЕВАЯ КОЛОНКА: информация о книгах -->
+                <div class="book-info">
+                    <div class="info-card">
+                        <h3>«Мифы-эмблемы-приметы»</h3>
+                        <p><strong>Оригинальное название:</strong> Miti, emblemi, spie: Morfologia e storia</p>
+                        <p><strong>Год выхода:</strong> 1986 (итальянское издание), 2004 (русский перевод)</p>
+                        <p><strong>Издательство:</strong> Einaudi (Турин) / «Новое издательство» (Москва)</p>
+                        <p><strong>Жанр:</strong> Сборник статей, методологический манифест</p>
+                        <p>Сборник подводит итоги раннего этапа творчества Гинзбурга — в него вошли тексты 1961–1984 годов. Центральное эссе «Приметы. Уликовая парадигма и ее корни» (1979) разрабатывает метод «морфологического анализа» для изучения схожих мифов у народов, удаленных во времени и пространстве.</p>
+                        <div class="meta">Ключевые темы: уликовая парадигма, иконография, психоанализ и этнология, политические злоупотребления наукой</div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>«Сыр и черви»</h3>
+                        <p><strong>Оригинальное название:</strong> Il formaggio e i vermi</p>
+                        <p><strong>Год выхода:</strong> 1976 (итальянское издание), 2000 (русский перевод)</p>
+                        <p><strong>Издательство:</strong> Einaudi (Турин) / РОССПЭН (Москва)</p>
+                        <p
+
+
+><strong>Жанр:</strong> Микроисторическое исследование</p>
+                        <p>Книга основана на материалах двух инквизиционных процессов (1584 и 1599) над фриульским мельником Доменико Сканделла по прозвищу Меноккио (1532–1600), сожжённым на костре за ересь. Гинзбург реконструирует картину мира своего героя — его космологию, религиозные и социальные взгляды.</p>
+                        <div class="meta">Ключевая идея: Меноккио не был простым «носителем» народной культуры, но самостоятельно перерабатывал прочитанное, создавая собственную картину мира (образ «сыра и червей»)</div>
+                    </div>
+                </div>
+                
+                <!-- ПРАВАЯ КОЛОНКА: фрагменты и задания -->
+                <div class="tasks-area">
+                    
+                    <!-- ЗАДАНИЕ 1: Мифы-эмблемы-приметы -->
+                    <div class="task-block">
+                        <h2>«Мифы-эмблемы-приметы» (1986 г.)</h2>
+                        <div class="fragment">
+                            <p>«Вернемся к человеку-волку. Из опубликованного Фрейдом отчета мы знаем, что пациент был русским; что родился он в рубашке; и притом родился в день Рождества. Существует очевидная культурная однородность между этими элементами и детским сновидением, в центре которого — появление волков. Ряд случайных совпадений представляется в данном случае крайне маловероятным. Посредником между сферой фольклорных верований, связанных с оборотнями, и будущим пациентом Фрейда, принадлежавшим, как было указано выше, к крупной буржуазии, была, вероятнее всего, его няня, описывавшаяся как „очень набожная и суеверная“ женщина. К этой старой няне ребенок был глубоко привязан (кстати говоря, именно она успокаивает его после страшного сна о волках). От нее, конечно же, он и узнал, какими необыкновенными свойствами (не обязательно негативными) он наделен в силу того, что родился в рубашке. От нее он услышал первые сказки, до того, как английская гувернантка стала читать ему сказки братьев Гримм в русском переводе. Сказка о портном и волках, которую вспоминал пациент во время анализа и которую ему читал дед (а может быть, также и няня?), была частью русского фольклора; Афанасьев даже включил ее в свой знаменитый сборник. Но пронизанный отголосками сказок сон о семи волках, сидящих на дереве, напоминает также и инициационные сновидения, сообщавшие будущим бенанданти или будущим тальтос, в пору их детства или юности, весть об их призвании.»</p>
+                            <div class="fragment-note">* Для понимания важен контекст: выше Гинзбург приводит в пример анализ народных верований различных культур, касаемых оборотней. В данных поверьях важным критерием для опознания оборотня являлось рождение в период рождества, рождение в рубашке.</div>
+                        </div>
+                        
+                        <div class="question">
+                            <p>📌 Вопросы к фрагменту:</p>
+                            <ol>
+                                <li>Как данный отрывок показывает проявление междисциплинарного подхода в микроистории?</li>
+                                <li>В данной статье Гинзбург утверждает, что Фрейд при психоанализе не учел культурную обстановку и ее влияние на пациента, а потому поставил неправильный диагноз. Познакомившись с данным отрывком, можем ли мы утверждать, что историк, используя исторический, этнографический и психологический анализ, может изучать и делать выводы относительно внутреннего мира человека прошлого?</li>
+                                <li>Почему Гинзбург обращает внимание на такие «мелкие» детали, как рождение в рубашке, дата Рождества, фигура няни? Является ли это отражением подходов Гинзбурга?</li>
+                            </ol>
+                        </div>
+                        
+                    </div>
+                    
+                    <!-- ЗАДАНИЕ 2: Сыр и черви -->
+                    <div class="task-block">
+                        <h2>«Сыр и черви» (1976 г.)</h2>
+                        <div class="fragment">
+                            <p>«В высказываниях Меноккио, как в археологическом раскопе, обнаруживаются глубинные культурные слои — столь диковинные, что задача их научного анализа кажется невыполнимой. И в данном случае, в отличие от разобранных прежде, речь идет не столько о реакции на книжное слово, сколько о самоуправлении устной культуры.»</p>
+                        </div>
+                        
+                        <div class="question">
+                            <p>📌 Вопросы к фрагменту:</p>
+                            <ol>
+                                <li>Некоторые сравнивают профессию историка с профессией следователя, утверждая, что и те, и другие ведут расследование, только историки — это следователи, которые опоздали на место преступления на несколько сотен лет. Можем ли мы утверждать, что подходы Гинзбурга схожи с подходами следователя?</li>
+                                <li>Сам Гинзбург в отрывке выше пишет, что задача научного анализа идей Меноккио кажется невыполнимой. Исходя из этого, можем ли мы утверждать, что изучение ментальности и внутреннего мира человека прошлого является выполнимой задачей или она остается лишь на уровне гипотез?</li>
+                            </ol>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>Практикум по историографии — учебный проект</p>
+        </div>
+    </footer>
+</body>
+</html>
+
+

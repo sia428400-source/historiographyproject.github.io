@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Микроистория | Авторы | Практикум по историографии</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FFFFFF;
+            color: #1A1A1A;
+            line-height: 1.5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+        .site-header {
+            background-color: #000000;
+            color: #FFFFFF;
+            padding: 32px 0 28px;
+            border-bottom: 4px solid #D32F2F;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #D32F2F;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #D32F2F;
+            margin-bottom: 24px;
+            border-bottom: 2px solid #E0E0E0;
+            padding-bottom: 16px;
+        }
+        .author-card {
+            background-color: #FAFAFA;
+            border: 1px solid #E0E0E0;
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 32px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .author-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+        /* Кликабельный автор */
+        .author-card.clickable {
+            cursor: pointer;
+        }
+        .author-card.clickable:hover {
+            border-color: #D32F2F;
+            background-color: #FEF5F5;
+        }
+        .author-card h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #000000;
+            margin-bottom: 12px;
+        }
+        .author-card h2 span {
+            color: #D32F2F;
+            font-size: 1rem;
+            font-weight: 400;
+        }
+        .author-card p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #2C2C2C;
+            margin-bottom: 12px;
+        }
+        .author-card .key-work {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #E0E0E0;
+            font-style: italic;
+            color: #D32F2F;
+        }
+        .read-more-hint {
+            display: inline-block;
+            margin-top: 12px;
+            color: #D32F2F;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .site-footer {
+            background-color: #F5F5F5;
+            border-top: 1px solid #E0E0E0;
+            padding: 24px 0;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #5C5C5C;
+            margin-top: 40px;
+        }
+        max-width: 700px {
+            .container { padding: 0 20px; }
+            h1 { font-size: 1.6rem; }
+            .author-card h2 { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a href="index.html" class="back-link">← Назад к направлениям</a>
+            <h1>Микроистория</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- Карло Гинзбург - кликабельный -->
+            <div class="author-card clickable" onclick="location.href='carlo-ginzburg.html'">
+                <h2>Карло Гинзбург <span>(р. 1939)</span></h2>
+                <p>Итальянский историк, самый известный представитель микроистории. Его книга «Сыр и черви» (1976) о космологии мельника Меноккио стала бестселлером и образцом микроистори
+
+
+ческого метода.</p>
+                <p>Гинзбург разработал концепцию «уликовой парадигмы», уподобляя работу историка работе детектива, собирающего улики. Он исследовал народную культуру, ведьмовство и историю ментальностей.</p>
+                <div class="key-work">Ключевая работа: «Сыр и черви. Картина мира одного мельника XVI века» (1976)</div>
+                <span class="read-more-hint">→ Нажмите, чтобы узнать больше о Карло Гинзбурге</span>
+            </div>
+
+            <div class="author-card">
+                <h2>Джованни Леви <span>(р. 1939)</span></h2>
+                <p>Итальянский историк, наряду с Гинзбургом — лидер микроисторического направления. Профессор Европейского университета во Флоренции.</p>
+                <p>Его работа «Нематериальное наследство» показала, как индивиды сохраняли свободу маневра в условиях структурных ограничений. Леви акцентировал роль субъективного выбора и стратегий поведения «маленького человека».</p>
+                <div class="key-work">Ключевая работа: «Нематериальное наследство. Крестьянин и экзорцист в Пьемонте XVII века» (1985)</div>
+            </div>
+
+            <div class="author-card">
+                <h2>Эдоардо Гренди</h2>
+                <p>Итальянский историк, ввел ключевое для микроистории понятие «нормальное исключительное» (1977). Он показал, что именно аномальные случаи позволяют лучше понять границы и механизмы социального контроля.</p>
+                <div class="key-work">Ключевая работа: «Микроанализ и социальная история» (1977)</div>
+            </div>
+
+            <div class="author-card">
+                <h2>Карло Пони</h2>
+                <p>Итальянский историк, совместно с Гинзбургом разработал «номинативную парадигму» — метод прослеживания судеб конкретных поименованных индивидов через архивные документы.</p>
+                <div class="key-work">Ключевая работа: «Имя и идентичность. Номинативная парадигма в социальной истории»</div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>Практикум по историографии — учебный проект</p>
+        </div>
+    </footer>
+</body>
+</html>

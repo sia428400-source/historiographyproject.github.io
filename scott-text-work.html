@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Работа с текстом | Джоан Скотт | Практикум по историографии</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FFFFFF;
+            color: #1A1A1A;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+        .site-header {
+            background-color: #000000;
+            color: #FFFFFF;
+            padding: 32px 0 28px;
+            border-bottom: 4px solid #D32F2F;
+        }
+        .back-links {
+            margin-bottom: 20px;
+        }
+        .back-link {
+            color: #D32F2F;
+            text-decoration: none;
+            font-weight: 500;
+            margin-right: 20px;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #D32F2F;
+            margin-bottom: 8px;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 32px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #E0E0E0;
+        }
+        
+        .two-columns {
+            display: flex;
+            gap: 48px;
+            margin: 40px 0;
+        }
+        
+        .book-info {
+            flex: 1;
+            position: sticky;
+            top: 20px;
+            align-self: flex-start;
+        }
+        .info-card {
+            background-color: #FAFAFA;
+            border-left: 4px solid #D32F2F;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 32px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .info-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #D32F2F;
+            margin-bottom: 16px;
+        }
+        .info-card p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #2C2C2C;
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+        .info-card .meta {
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #E0E0E0;
+        }
+        
+        .tasks-area {
+            flex: 1.8;
+        }
+        .task-block {
+            background-color: #FFFFFF;
+            border: 1px solid #E0E0E0;
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 48px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+        .task-block h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #D32F2F;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #E0E0E0;
+        }
+        .work-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #000000;
+            margin: 16px 0 8px;
+        }
+        .fragment {
+            background-color: #F5F5F5;
+            border-left: 4px solid #000000;
+            padding: 20px 24px;
+            margin: 20px 0;
+            border-radius: 12px;
+        }
+        .fragment p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #1A1A1A;
+            margin-bottom: 8px;
+        }
+        .fragment-quote-en {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+        }
+        .fragment-quote-ru {
+            margin: 12px 0;
+            padding-left: 16px;
+            border-left: 2px solid #D32F2F;
+        }
+        .source {
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 12px;
+            text-align: right;
+        }
+        .question {
+            margin-top: 24px;
+            padding-top: 16px;
+            border-top: 1px dashed #E0E0E0;
+        }
+        .question p {
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #000000;
+        }
+        .question ol {
+            margin-left: 24px;
+            margin-bottom: 16px;
+        }
+        .question li {
+            margin-bottom: 16px;
+            line-height: 1.6;
+            color: #2C2C2C;
+        }
+        .answer-field {
+            background-color: #FAFAFA;
+            border: 1px solid #E0E0E0;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 16px;
+        }
+        .answer-field p {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #E0E0E0;
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            resize: vertical;
+            background-color: #FFFFFF;
+        }
+        textarea:focus {
+            outline: none;
+            border-color: #D32F2F;
+        }
+        
+        .site-footer {
+            background-color: #F5F5F5;
+            border-top: 1px solid #E0E0E0;
+            padding: 24px 0;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #5C5C5C;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 900px) {
+            .two-columns {
+                flex-direction: column;
+            }
+            .book-info {
+                position: static;
+            }
+            .container {
+                padding: 0 20px;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            .task-block {
+                padding: 20px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="back-links">
+                <a href="index.html" class="back-link">← Назад к направлениям</a>
+                <a href="gender-authors.html" class="back-link">← Авторы гендерной истории</a>
+                <a href="joan-scott.html" class="back-link">← Джоан Скотт</a>
+            </div>
+            <h1>Работа с текстом</h1>
+            <div class="subtitle">Аналитические задания по статье Джоан Скотт «Gender: A Useful Category of Historical Analysis» (1986)</div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="two-columns">
+                <!-- ЛЕВАЯ КОЛОНКА: информация о статье -->
+                <div class="book-info">
+                    <div class="info-card">
+                        <h3>«Gender: A Useful Category of Historical Analysis»</h3>
+                        <p><strong>Год публикации:</strong> 1986</p>
+                        <p><strong>Журнал:</strong> The American Historical Review, Vol. 91, No. 5</p>
+                        <p><strong>Статус:</strong> Манифест нового направления</p>
+                        <p>Эта статья, опубликованная в одном из главных американских исторических журналов, стала, по сути, манифестом нового направления. Написанная в разгар споров внутри феминизма и под сильным влиянием постструктурализма, она предлагала перейти от простого «добавления» женщин к глубокому анализу гендера как категории, которая помогает понять, как устроены власть и социальный порядок.</p>
+                        <div class="meta">Ключевая идея: гендер — не описательная, а аналитическая категория, позволяющая увидеть, как работает власть</div>
+                    </div>
+                </div>
+                
+                <!-- ПРАВАЯ КОЛОНКА: фрагменты и задания -->
+                <div class="tasks-area">
+
+
+<!-- ЗАДАНИЕ 1: Происхождение термина "гендер" -->
+                    <div class="task-block">
+                        <h2>Происхождение термина «гендер» в феминистской теории</h2>
+                        <div class="fragment">
+                            <div class="fragment-quote-en">
+                                «Those who would codify the meanings of words fight, for words, like the ideas and things they are meant to signify, have a history. […] In its most recent usage, "gender" seems to have first appeared among American feminists who wanted to insist on the fundamentally social quality of distinctions based on sex. The word denoted a rejection of the biological determinism implicit in the use of such terms as "sex" or "sexual difference." "Gender" also stressed the relational aspect of normative definitions of femininity. According to this view, women and men were defined in terms of one another, and no understanding of either could be achieved by entirely separate study.»
+                            </div>
+                            <div class="fragment-quote-ru">
+                                <p>«Те, кто пытается закрепить раз и навсегда значения слов, обречены на неудачу, потому что слова, как и идеи и вещи, которые они обозначают, имеют свою историю. […] В своём современном понимании термин "гендер" появился среди американских феминисток, которые хотели подчеркнуть социальный характер различий между полами. Это слово стало способом отказаться от биологического детерминизма, который подразумевается понятиями "пол" или "половые различия". "Гендер" также подчёркивает, что женственность и мужественность определяются всегда относительно друг друга. Невозможно по-настоящему понять одну сторону, не изучая другую.</p>
+                                <p>Натали Земон Дэвис ещё в 1975 году говорила, что нас должно интересовать прошлое и женщин, и мужчин. Мы не должны заниматься только "подчинённым полом", как историк класса не должен изучать только крестьян. Наша задача — понять, какое значение имели половые роли и сексуальная символика в разные эпохи, как они работали на сохранение или изменение социального порядка.</p>
+                                <p>Самое важное, пожалуй, в том, что изучение женщин, по мнению многих феминистских исследователей, должно не просто добавить новую тему, а полностью изменить сами подходы и стандарты исторической науки.»</p>
+                            </div>
+                            <div class="source">Scott J. W. Gender: A Useful Category of Historical Analysis // The American Historical Review. 1986. Vol. 91. No. 5. P. 1053–1055, 1056–1057</div>
+                        </div>
+                        
+                        <div class="question">
+                            <p>📌 Вопросы к тексту:</p>
+                            <ol>
+                                <li>Почему взгляд на гендерные различия как на «естественные» мешает серьёзному историческому анализу?</li>
+                                <li>Какие социальные институты формируют и поддерживают гендерные роли?</li>
+                                <li>Можно ли использовать эти идеи для понимания современного общества?</li>
+                            </ol>
+                        </div>
+                        
+                    </div>
+                    
+                    <!-- ЗАДАНИЕ 2: Власть и гендер -->
+                    <div class="task-block">
+                        <h2>Гендер как поле артикуляции власти</h2>
+                        <div class="fragment">
+                            <div class="fragment-quote-en">
+                        «Gender is a primary field within which or by means of which power is articulated. Gender, then, provides a way to decode meaning and to understand the complex connections among various forms of human interaction. The point is that gender is not merely a descriptive category but an analytic one that reveals how power operates. […] Gender is knowledge about sexual difference. And here knowledge is understood in the sense that Michel Foucault gave to it: that which cultures and societies produce about human relations. Studying gender allows us to see how social differences are created and maintained, and how they are linked to power. Gender helps us understand how representations of "masculine" and "feminine" organize our perception of history and the writing of historical texts itself.»
+                            </div>
+                            <div class="fragment-quote-ru">
+                                <p>«Гендер — это одно из главных полей, внутри которого или с помощью которого артикулируется власть. Он даёт нам инструмент, чтобы расшифровывать смыслы и понимать сложные связи между разными формами человеческих взаимодействий. Важно, что гендер — это не просто описательная категория, а аналитическая, которая позволяет увидеть, как на самом деле работает власть.</p>
+                                <p>Гендер — это знание о половых различиях. И здесь знание понимается в том смысле, который вкладывал в это слово Мишель Фуко: это то, что культуры и общества производят о человеческих отношениях. Изучая гендер, мы видим, как создаются и поддерживаются социальные различия и как они связаны с властью.</p>
+                                <p>Гендер помогает нам понять, как представления о "мужском" и "женском" организуют наше восприятие истории и само написание исторических текстов.»</p>
+                            </div>
+                            <div class="source">Scott J. W. Gender: A Useful Category of Historical Analysis // The American Historical Review. 1986. Vol. 91. No. 5. P. 1067–1070</div>
+                        </div>
+                        
+                        <div class="question">
+                            <p>📌 Вопросы к тексту:</p>
+                            <ol>
+                                <li>Каким образом гендер связан с политической властью?</li>
+                                <li>Приведите исторические примеры, когда права ограничивались по гендерному признаку.</li>
+                                <li>Можно ли считать гендер одним из основных инструментов социальной иерархии?</li>
+                            </ol>
+                        </div>
+                       
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>Практикум по историографии — учебный проект</p>
+        </div>
+    </footer>
+</body>
+</html>
+
+

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Историк, идея, текст | Практикум по историографии</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
+   <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FFFFFF;
+            color: #1A1A1A;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        .site-header {
+            background-color: #000000;
+            color: #FFFFFF;
+            padding: 40px 0 36px;
+            border-bottom: 4px solid #D32F2F;
+        }
+
+        .practicum-tag {
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #D32F2F;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .practicum-title {
+            font-size: 1.8rem;
+            font-weight: 500;
+            line-height: 1.3;
+            max-width: 900px;
+        }
+
+        .historiography-section {
+            margin: 48px 0 40px;
+        }
+
+        .hero-word {
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: #D32F2F;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .definition {
+            background-color: #F5F5F5;
+            padding: 28px 32px;
+            border-radius: 20px;
+            border: 1px solid #E0E0E0;
+        }
+
+        .definition > p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .definition-split {
+            display: flex;
+            gap: 24px;
+        }
+
+        .def-narrow, .def-wide {
+            flex: 1;
+            background: #FFFFFF;
+            padding: 16px 20px;
+            border-radius: 14px;
+            border-left: 4px solid #D32F2F;
+        }
+
+        .def-narrow h3, .def-wide h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #000000;
+        }
+
+        .def-narrow p, .def-wide p {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+            color: #2C2C2C;
+        }
+
+        .two-columns {
+            display: flex;
+            gap: 48px;
+            margin: 40px 0 60px;
+            min-height: 550px;
+        }
+
+        .directions-list {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .direction-card {
+            background-color: #FFFFFF;
+            border: 1.5px solid #E0E0E0;
+            border-radius: 16px;
+            padding: 20px 24px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .direction-card:hover {
+            border-color: #D32F2F;
+            transform: translateX(4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .direction-card.active {
+            border-color: #D32F2F;
+            background-color: #FEF5F5;
+            border-left: 4px solid #D32F2F;
+        }
+
+        .direction-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: #1A1A1A;
+            transition: color 0.2s;
+        }
+
+        .direction-card:hover h3 {
+            color: #D32F2F;
+        }
+
+        .direction-card.active h3 {
+            color: #D32F2F;
+        }
+
+        .direction-card .short-desc {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 8px;
+            display: block;
+        }
+
+        .content-area {
+            flex: 2;
+            background-color: #FAFAFA;
+            border-radius: 20px;
+            border: 1px solid #E0E0E0;
+            padding: 32px;
+            overflow-y: auto;
+            max-height: 600px;
+        }
+
+        .content-area h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #D32F2F;
+            margin-bottom: 20px;
+            padding-bottom:12px;
+            border-bottom: 2px solid #E0E0E0;
+        }
+
+        .content-area h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #000000;
+            margin: 20px 0 12px;
+        }
+
+        .content-area p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 14px;
+            color: #2C2C2C;
+        }
+
+        .authors-button {
+            display: inline-block;
+            margin-top: 24px;
+            padding: 12px 28px;
+            background-color: #000000;
+            color: #FFFFFF;
+            text-decoration: none;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            border: 1px solid #000000;
+        }
+
+        .authors-button:hover {
+            background-color: #D32F2F;
+            border-color: #D32F2F;
+            transform: translateY(-2px);
+        }
+
+        .site-footer {
+            background-color: #F5F5F5;
+            border-top: 1px solid #E0E0E0;
+            padding: 24px 0;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #5C5C5C;
+        }
+
+        /* АДАПТИВНОСТЬ ДЛЯ ТЕЛЕФОНОВ */
+        @media (max-width: 900px) {
+            .two-columns {
+                flex-direction: column;
+                gap: 32px;
+            }
+            
+            .directions-list {
+                flex: none;
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 12px;
+            }
+            
+            .direction-card {
+                padding: 16px 20px;
+            }
+            
+            .direction-card h3 {
+                font-size: 1rem;
+            }
+            
+            .content-area {
+                max-height: none;
+                padding: 20px;
+            }
+            
+            .content-area h2 {
+                font-size: 1.3rem;
+            }
+            
+            .hero-word {
+                font-size: 2rem;
+                letter-spacing: 2px;
+            }
+            
+            .definition-split {
+                flex-direction: column;
+                gap: 16px;
+            }
+            
+            .definition {
+                padding: 20px;
+            }
+            
+            .practicum-title {
+                font-size: 1.2rem;
+            }
+            
+            .container {
+                padding: 0 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-word {
+                font-size: 1.6rem;
+            }
+            
+            .direction-card h3 {
+                font-size: 0.9rem;
+            }
+            
+            .direction-card .short-desc {
+                font-size: 0.75rem;
+            }
+            
+            .content-area {
+                padding: 16px;
+            }
+            
+            .content-area h2 {
+                font-size: 1.2rem;
+            }
+            
+            .content-area p {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container">
+            <div class="practicum-tag">Практикум</div>
+            <h1 class="practicum-title">«Историк, идея, текст: практикум по зарубежной историографии второй половины ХХ – начала ХХI вв.»</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="historiography-section">
+                <h2 class="hero-word">ИСТОРИОГРАФИЯ</h2>
+                <div class="definition">
+                    <p><strong></strong> </p>
+                    <div class="definition-split">
+                        <div class="def-narrow">
+                            <h3>В узком смысле</h3>
+                            <p>Совокупность исследований, посвящённых определённой теме либо эпохе, или корпус трудов, объединённых идеологическим, языковым или национальным единством.</p>
+                        </div>
+                        <div class="def-wide">
+                            <h3>В широком смысле</h3>
+                            <p>Специальная историческая дисциплина, изучающая историю исторической науки, проверяющая корректность применения научного метода, анализирующая автора, источники и интерпретации.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="two-columns">
+                <div class="directions-list">
+                    <div class="direction-card" data-direction="micro">
+                        <h3>МИКРОИСТОРИЯ</h3>
+                        <span class="short-desc">От Болоньи до «Сыра и червей»</span>
+                    </div>
+                    <div class="direction-card" data-direction="conceptual">
+                        <h3>ИСТОРИЯ ПОНЯТИЙ</h3>
+                        <span class="short-desc">Begriffsgeschichte и проект «Geschichtliche Grundbegriffe»</span>
+                    </div>
+                    <div class="direction-card" data-direction="cultural">
+                        <h3>НОВАЯ КУЛЬТУРНАЯ ИСТОРИЯ</h3>
+                        <span class="short-desc">Практики, репрезентации, антропологический поворот</span>
+                    </div>
+                    <div class="direction-card" data-direction="gender">
+                        <h3>ГЕНДЕРНАЯ ИСТОРИЯ</h3>
+                        <span class="short-desc">От женской истории к истории гендерных отношений</span>
+                    </div>
+                    <div class="direction-card" data-direction="intellectual">
+                        <h3>ИНТЕЛЛЕКТУАЛЬНАЯ ИСТОРИЯ</h3>
+                        <span class="short-desc">Идеи, контекст и критика метанарративов</span>
+                    </div>
+                    <div class="direction-card" data-direction="postcolonial">
+                        <h3>ПОСТКОЛОНИАЛЬНАЯ ИСТОРИЯ</h3>
+                        <span class="short-desc">Деконструкция европоцентризма и голос субалтерна</span>
+                    </div>
+                </div>
+
+                <div class="content-area" id="contentArea">
+                    <!-- Контент будет подставляться JS -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>Практикум по историографии — учебный проект</p>
+        </div>
+    </footer>
+
+    <script>
+        // Соответствие направлений и страниц с авторами
+        const authorsPages = {
+            micro: 'micro-authors.html',
+            conceptual: 'conceptual-authors.html',
+            cultural: 'cultural-authors.html',
+            gender: 'gender-authors.html',
+            intellectual: 'intellectual-authors.html',
+            postcolonial: 'postcolonial-authors.html'
+        };
+
+        // Контент для каждого направления
+        const contentMap = {
+            micro: {
+                title: 'МИКРОИСТОРИЯ',
+                html: `
+                    <p>Микроистория сформировалась как самостоятельное направление в середине 1970-х годов в Италии. Родиной направления стал город Болонья, где выходил журнал Quaderni storici (основан в 1970 г.), вокруг которого сложилась группа историков-новаторов.</p>
+                    <p>Важнейшую роль в институционализации сыграла книжная серия «Microstorie», выпускавшаяся туринским издательством Einaudi с 1981 по 1991 год. Под руководством Карло Гинзбурга и Джованни Леви в серии вышла 21 монография.</p>
+                    <h3>Предпосылки возникновения</h3>
+                    <p>Возникновение микроистории было ответом на кризис макроисторических подходов, прежде всего – школы «Анналов» с её фокусом на социальных структурах и количественных методах. К 1970-м годам стало очевидно, что за усреднёнными показателями исчезает человеческая индивидуальность.</p>
+                    <p>Политический контекст также сыграл роль: основатели направления принадлежали к левому интеллектуальному спектру, но стремились преодолеть телеологический прогрессизм марксизма, обратившись к «нормальному исключительному».</p>
+                `
+            },
+            conceptual: {
+                title: 'ИСТОРИЯ ПОНЯТИЙ',
+                html: `
+                    <p>Термин «история понятий» (Begriffsgeschichte) утвердился в методологическом поле гуманитарных наук в связи с реализацией масштабного лексикографического проекта «Исторические основные понятия» (Geschichtliche Grundbegriffe), первый том которого вышел в 1972 году под редакцией Отто Бруннера, Вернера Конце и Райнхарта Козеллека.</p>
+                    <p>Данный подход оформился в качестве критической альтернативы традиционной истории идей (Ideengeschichte). В отличие от нее, история понятий исследует не абстрактные, вневременные философские категории, а конкретную языковую практику, зафиксированную в социально-политическом контексте определенной эпохи.</p>
+                `
+
+
+},
+            cultural: {
+                title: 'НОВАЯ КУЛЬТУРНАЯ ИСТОРИЯ',
+                html: `
+                    <p>Термин «новая культурная история» вошел в научный оборот в сборнике материалов конференции «Французская история: тексты и культура» Линн Хант в 1987 году. Лозунг, выдвинутый Хант: «история религиозных практик вместо теологии, история речи вместо лингвистики, история экспериментов вместо научной теории».</p>
+                    <p>Объект исследования новой культурной истории заключается в изучении соотношения между нормами, представлениями и практиками. Изучение практик предполагает применение антропологического подхода, когда историки исследуют жизнь отдельных людей, небольших сообществ, историю эмоций и тела.</p>
+                    <p>Новая культурная история получила широкое распространение в США, Франции (Р. Шартье), Германии и Голландии. П. Бёрк указывает, что сегодня это преобладающая форма культурной истории.</p>
+                `
+            },
+            gender: {
+                title: 'ГЕНДЕРНАЯ ИСТОРИЯ',
+                html: `
+                    <p>Гендерная история не возникла внезапно в 1970-е годы — у неё глубокие интеллектуальные корни, уходящие в эпоху Просвещения. Уже в XVIII веке Мэри Уолстонкрафт с её трактатом «Защита прав женщины» (1792) критиковала патриархальные порядки.</p>
+                    <p>К 1970–1980-м годам «женская история» постепенно трансформировалась в гендерную историю. Историки перешли к анализу отношений между полами, конструированию мужественности и женственности.</p>
+                    <p><strong>Итоговое определение:</strong> Гендерная история рассматривает гендер не как биологический факт, а как исторически изменчивую систему социальных отношений, символов и практик власти.</p>
+                `
+            },
+            intellectual: {
+                title: 'ИНТЕЛЛЕКТУАЛЬНАЯ ИСТОРИЯ',
+                html: `
+                    <p>Интеллектуальная история изучает историю интеллектуальной деятельности людей, их идей, их создания, распространения и влияния на общество.</p>
+                    <h3>Особенности</h3>
+                    <p><strong>Междисциплинарность.</strong> Интеллектуальные историки обращаются к данным из философии, политологии, антропологии, социологии.</p>
+                    <p><strong>Изучение контекста.</strong> Идеи анализируются в связи с социальным, культурным и историческим контекстом.</p>
+                    <p>Ключевую роль сыграл Артур О. Лавджой, введший термин «история идей». В 70-е годы формируется сообщество «новых интеллектуальных историков» (Хейден Уайт, Доминик Лакапра, Роберт Дарнтон).</p>
+                `
+            },
+            postcolonial: {
+                title: 'ПОСТКОЛОНИАЛЬНАЯ ИСТОРИЯ',
+                html: `
+                    <p>Постколониальные исследования — междисциплинарное направление, сформировавшееся в 1980-е годы для переосмысления культурного и политического наследия колониализма.</p>
+                    <p>Ключевые фигуры: Эдвард Саид («Ориентализм»), Гаятри Чакраворти Спивак («Могут ли угнетенные говорить?»), Хоми К. Бхабха (понятия гибридности и мимикрии).</p>
+                    <p>Влияние направления: критика европоцентризма, отказ от линейной истории как движения к западной модели, внимание к «субалтернам» — лишённым голоса в классических нарративах.</p>
+                `
+            }
+        };
+
+        const cards = document.querySelectorAll('.direction-card');
+        const contentArea = document.getElementById('contentArea');
+        let currentDirection = 'micro';
+
+        function activateDirection(directionId) {
+            currentDirection = directionId;
+            
+            // Убираем active у всех
+            cards.forEach(card => card.classList.remove('active'));
+            // Добавляем active нажатому
+            const activeCard = document.querySelector(`.direction-card[data-direction="${directionId}"]`);
+            if (activeCard) activeCard.classList.add('active');
+            
+            // Меняем контент
+            const content = contentMap[directionId];
+            if (content) {
+                const pageLink = authorsPages[directionId];
+                contentArea.innerHTML = `
+                    <h2>${content.title}</h2>
+                    ${content.html}
+                    <a href="${pageLink}" class="authors-button">📖 Подробнее об авторах →</a>
+                `;
+            }
+        }
+
+        // Навешиваем обработчики
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                const direction = card.getAttribute('data-direction');
+                activateDirection(direction);
+            });
+        });
+
+        // Активируем микроисторию по умолчанию
+        activateDirection('micro');
+    </script>
+</body>
+</html>
